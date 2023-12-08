@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Device Information</title>
+    <!-- Add any CSS styles or external libraries if needed -->
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Device Information</h1>
+
+    <!-- Form for retrieving devices -->
+    <form action="/get_devices" method="post">
+        <label for="deveui">Search by device EUI:</label>
+        <input type="text" name="deveui" id="deveui">
+        <br><br>
+        <input type="submit" value="Get Devices">
+        <br><br>
+        <label for="count">Show number of results:</label>
+        <select name="count" id="count">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="all">All</option>
+        </select>
+    </form>
+
+    <!-- Display the retrieved devices -->
+    <div>
+        <h2>List of Devices:</h2>
+        <form action="/get_device_info" method="post">
+            <ul>
+                <!-- Assuming 'devices' is the list of devices passed from Flask -->
+                {% for device in devices %}
+                    <li>
+                        <input type="checkbox" name="selected_devices[]" value="{{ device }}">
+                        {{ device }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <input type="submit" value="Get Device Info">
+        </form>
+    </div>
+
+    <!-- Display device information -->
+    <div id="device-info">
+        <!-- Device info will be displayed here using JavaScript or Flask -->
+    </div>
+
+    <!-- Add any additional HTML content or scripts if needed -->
+    <script>
+        // You can add JavaScript to handle form submissions and display device information
+        // This script can make AJAX requests to fetch device information and display it on the page
+        // For brevity, AJAX handling is not provided in this example
+    </script>
+</body>
+</html>
